@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import About from './components/About';
+
+import AddTask from "./components/AddTask";
+import Footer from './components/Footer';
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
-
-import { useState, useEffect } from "react"
 
 function App() {
   const title = 'Task Tracker'
@@ -85,21 +88,34 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header
-      title={ title }
-      onToggleForm={ () => setShowAddTask(!showAddTask) }
-      showForm={ showAddTask }
-      />
-      {
-      showAddTask && <AddTask onAddTask={ addTask }/>
-      }
-      {
-        tasks.length > 0 ?
-        <Tasks taskList={ tasks } onDelete={ deleteTask } onToggle={ toggleReminder }/> :
-        'No Tasks To Show'
-      }
-    </div>
+    <Router>
+      <div className="container">
+        <Header
+        title={ title }
+        onToggleForm={ () => setShowAddTask(!showAddTask) }
+        showForm={ showAddTask }
+        />
+        <Routes>
+          <Route
+          path='/'
+          element={
+            <>
+              {
+              showAddTask && <AddTask onAddTask={ addTask }/>
+              }
+              {
+                tasks.length > 0 ?
+                <Tasks taskList={ tasks } onDelete={ deleteTask } onToggle={ toggleReminder }/> :
+                'No Tasks To Show'
+              }
+            </>
+          }
+          />
+          <Route path='/about' element={ <About />}/>
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
