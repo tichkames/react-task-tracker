@@ -4,13 +4,19 @@
       "id": 1,
       "text": "Food Shopping",
       "day": "Feb 5th at 2:30pm",
-      "reminder": false
+      "reminder": true
     },
     {
       "id": 2,
       "text": "Biking",
       "day": "March 10th at 6:30pm",
-      "reminder": true
+      "reminder": false
+    },
+    {
+      "text": "Sleeping",
+      "day": "Sunday 31 July",
+      "reminder": true,
+      "id": 3
     }
   ]
 }
